@@ -10,7 +10,7 @@ import logo from "../../assets/img/springboard.png";
 import user from "../../assets/img/user.png";
 import email from "../../assets/img/mail.png";
 import lock from "../../assets/img/padlock.png";
-import "./Signup.css";
+import "../Login/Login.css";
 export default function Signup() {
   const navigate = useNavigate();
   const firstName = useRef(null);
@@ -18,7 +18,37 @@ export default function Signup() {
   const username = useRef(null);
   const password = useRef(null);
   const email = useRef(null);
-
+  
+  const headers = {
+    "Content-Type": "application/json",
+    firstName: firstName.current.value,
+    LastName: LastName.current.value,
+    username: username.current.value,
+    password: password.current.value,
+  }
+  const singup = async () => {
+    try {
+      await fetch(`${Config.backEndUrl}signup`,{
+        method: "POST",
+        headers: headers,
+      }).then().catch(
+        
+        toast.error(
+        "The information entered is incorrect. Please try again",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      ))
+    } catch (error) {
+      console.log("error")
+    }
+  }
   return (
     <div className='container'>
       <div className='header-container'>

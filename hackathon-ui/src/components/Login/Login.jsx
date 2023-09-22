@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Config from "../../config/Config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { Await, useNavigate } from "react-router-dom";
 // import store from "../store/store";
 import logo from "../../assets/img/springboard.png";
 import user from "../../assets/img/user.png";
@@ -13,11 +13,47 @@ import lock from "../../assets/img/padlock.png";
 import "./Login.css";
 export default function Login() {
   const navigate = useNavigate();
-  const username = useRef(null);
-  const password = useRef(null);
-
+  const username = useRef("");
+  const password = useRef("");
+  const headers = {
+    "Content-Type": "application/json",
+    username: username.current.value,
+    password: password.current.value,
+  }
+  const login = async () => {
+    try {
+      await fetch(`${Config.backEndUrl}login`,{
+        method: "POST",
+        headers: headers,
+      }).then().catch(toast.error(
+        "The information entered is incorrect. Please try again",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      ))
+    } catch (error) {
+      console.log("error")
+    }
+  }
   return (
     <div className='container'>
+      <ToastContainer
+    position='top-center'
+    autoClose={5000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHove
+  />
       <div className='header-container'>
         <img src={logo} alt='logo' />
       </div>
@@ -32,7 +68,7 @@ export default function Login() {
           <input type='password' placeholder='Password' ref={password} />
         </div>
         <div className='submit-container'>
-          <div className='btn'>Log in</div>
+          <div className='btn' onClick={()=>login()}>Log in</div>
           <div className='forgot-password'>
             <a href="Signup">Don't have an account yet?</a>
           </div>
@@ -41,8 +77,4 @@ export default function Login() {
       </div>
     </div>
   );
-
-  function home() {
-    navigate("/");
-  }
 }
