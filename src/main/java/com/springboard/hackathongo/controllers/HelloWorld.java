@@ -3,6 +3,7 @@ package com.springboard.hackathongo.controllers;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.ListTablesRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin("*")
 public class HelloWorld {
 
     Region region = Region.US_EAST_1;
