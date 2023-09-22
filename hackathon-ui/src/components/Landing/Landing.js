@@ -19,7 +19,7 @@ export default function Landing() {
           </div>
           <div className="landing-text">
             <h2>
-              We can transform <span style={{ color: '1876C0' }}>Delaware</span>  into a state <br />
+              We can transform <span style={{ color: '#1876C0' }}>Delaware</span>  into a state <br />
               with near-real-time,<span style={{ color: '#1876C0' }}> sustainable zero homelessness</span> 
             </h2>
           </div>
