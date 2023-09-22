@@ -15,7 +15,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamoDBTable(tableName = "usr_table")
-
 public class Users {
 
     @DynamoDBHashKey
