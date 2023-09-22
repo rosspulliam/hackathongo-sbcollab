@@ -1,10 +1,47 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Nav, Row, Col, Card, Button, Form, ListGroup } from "react-bootstrap";
 import "../UserDashboard/UserDashboard.css";
 
 export default function UserDashboard() {
   const [editMode, setEditMode] = useState(false);
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    fetch('https://pg3ackaqdv.us-east-1.awsapprunner.com/getServices')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setServices(data);
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error('Error fetching services:', error);
+      });
+  }, []);
+  console.log(services)
+//   const [activityData, setActivityData] = useState([]);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+ 
+//         try {
+//             const response = await axios.get('https://pg3ackaqdv.us-east-1.awsapprunner.com/getActivity?id=3');
+//             setActivityData(response.data);
+//           } catch (error) {
+//             console.error('Error fetching activity data:', error);
+//             throw error;
+//           }
+//     };
+
+//     fetchData();
+//   }, []);
+
+//   console.log(activityData)
 
   const handleEditClick = () => {
     setEditMode(true);
@@ -39,29 +76,24 @@ export default function UserDashboard() {
                         <Card.Body>
                           {editMode ? (
                             <Form>
+                                    <p>
+                                <strong>First Name:</strong> Jane
+                              </p>
+                              <p>
+                                <strong>Last Name:</strong> Doe
+                              </p>
+                              <p>
+                                <strong>Date of Birth:</strong> 09/08
+                              </p>
+                              <p>
+                                <strong>Case Manager:</strong> John Doe
+                              </p>
                               <Form.Group
                                 className="mb-3"
-                                controlId="firstName"
+                                controlId="phoneNumber"
                               >
-                                <Form.Label>First Name</Form.Label>
-                                <Form.Control
-                                  type="text"
-                                  placeholder="Enter first name"
-                                />
-                              </Form.Group>
-                              <Form.Group className="mb-3" controlId="lastName">
-                                <Form.Label>Last Name</Form.Label>
-                                <Form.Control
-                                  type="text"
-                                  placeholder="Enter last name"
-                                />
-                              </Form.Group>
-                              <Form.Group
-                                className="mb-3"
-                                controlId="dateOfBirth"
-                              >
-                                <Form.Label>Date of Birth</Form.Label>
-                                <Form.Control type="date" />
+                                <Form.Label>Phone Number</Form.Label>
+                                <Form.Control placeholder="1231231234" />
                               </Form.Group>
                             </Form>
                           ) : (
@@ -74,6 +106,12 @@ export default function UserDashboard() {
                               </p>
                               <p>
                                 <strong>Date of Birth:</strong> 09/08
+                              </p>
+                              <p>
+                                <strong>Case Manager:</strong> John Wiilliams
+                              </p>
+                              <p>
+                                <strong>Phone Number:</strong> 0000
                               </p>
                             </div>
                           )}
@@ -97,11 +135,13 @@ export default function UserDashboard() {
                   <Card>
         <Card.Header>Activity Feed</Card.Header>
       <Card.Body>
-        <Card.Title>title</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">
-          time
-        </Card.Subtitle>
-        <Card.Text>description</Card.Text>
+        <Card.Title>September 26, 2023
+</Card.Title>
+<Card.Text><strong>You </strong>have an upcoming appointment with<strong> Community Health</strong></Card.Text>
+        {""}
+        <Card.Title>September 29, 2023
+</Card.Title>
+<Card.Text><strong>You </strong>have an upcoming appointment with<strong> Community Health</strong></Card.Text>
       </Card.Body>
     </Card>
                   </Col>
@@ -110,10 +150,41 @@ export default function UserDashboard() {
               </div>
               <div className="user-main-bottom">
               <Card>
-      <Card.Header>Services</Card.Header>
+      <Card.Header>Your Services</Card.Header>
       <Card.Body>
-        <ListGroup variant="flush">
-            <ListGroup.Item >Medical</ListGroup.Item>
+      <ListGroup variant="flush">
+            <ListGroup.Item >
+              <Row>
+                <Col md={6}>
+                  <strong>Community Health</strong>
+                </Col>
+                <Col md={6}>
+                  123 Main Street
+                </Col>
+              </Row>
+            </ListGroup.Item>
+            {" "}
+            <ListGroup.Item >
+              <Row>
+                <Col md={6}>
+                  <strong>Community Health</strong>
+                </Col>
+                <Col md={6}>
+                  123 Main Street
+                </Col>
+              </Row>
+            </ListGroup.Item>
+            {" "}
+            <ListGroup.Item >
+              <Row>
+                <Col md={6}>
+                  <strong>Community Health</strong>
+                </Col>
+                <Col md={6}>
+                  123 Main Street
+                </Col>
+              </Row>
+            </ListGroup.Item>
         </ListGroup>
       </Card.Body>
     </Card>
