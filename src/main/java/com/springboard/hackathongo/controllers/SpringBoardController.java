@@ -1,13 +1,7 @@
 package com.springboard.hackathongo.controllers;
 
-import com.springboard.hackathongo.entities.Account;
-import com.springboard.hackathongo.entities.Activity;
-import com.springboard.hackathongo.entities.Services;
-import com.springboard.hackathongo.entities.Users;
-import com.springboard.hackathongo.services.AccountService;
-import com.springboard.hackathongo.services.AcivityService;
-import com.springboard.hackathongo.services.ServicesTableService;
-import com.springboard.hackathongo.services.UsersService;
+import com.springboard.hackathongo.entities.*;
+import com.springboard.hackathongo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +23,9 @@ public class SpringBoardController {
     @Autowired
     UsersService usersService;
 
+    @Autowired
+    CommentsService commentsService;
+
     @GetMapping("/accounts")
     public List<Account> getAllAccounts(){
         return accountService.getAllAccounts();
@@ -49,9 +46,14 @@ public class SpringBoardController {
         return usersService.getAllUsers();
     }
 
-    @GetMapping("/getUser")//not working
+    @GetMapping("/getUser")
     public Users getUser(@RequestParam int id){
         return usersService.getUser(id);
+    }
+
+    @GetMapping("/getUserComments")
+    public List<Comments> getUsersComments(@RequestParam int destinationId, @RequestParam int userId){
+        return commentsService.getAllComments(destinationId,userId);
     }
 }
 

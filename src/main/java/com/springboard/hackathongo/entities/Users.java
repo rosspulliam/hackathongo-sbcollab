@@ -16,5 +16,6 @@ public class Users {
     private String acceptance;
     private String userId;//log in
     private String passwd;
+    private int accountId;
     private Date lastUpdated;
 }

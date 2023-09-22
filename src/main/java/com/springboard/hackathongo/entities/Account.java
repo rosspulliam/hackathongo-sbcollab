@@ -20,5 +20,5 @@ public class Account {
     private String lastName;
     private String provider;
     private String case_mgr;
-    private String comments;
+    private String need;
 }
