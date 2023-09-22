@@ -24,8 +24,8 @@ export default function Landing() {
             </h2>
           </div>
           <div className="landing-buttons">
-            <Button variant="primary">Log In</Button>{" "}
-            <Button variant="primary">Sign Up</Button>{" "}
+            <Button href="login" variant="primary">Log In</Button>{" "}
+            <Button href="signup" variant="primary">Sign Up</Button>{" "}
           </div>
         </div>
         <div className="landing-right">

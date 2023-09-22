@@ -8,9 +8,9 @@ import { Await, useNavigate } from "react-router-dom";
 // import store from "../store/store";
 import logo from "../../assets/img/springboard.png";
 import user from "../../assets/img/user.png";
-import email from "../../assets/img/mail.png";
 import lock from "../../assets/img/padlock.png";
 import "./Login.css";
+import Button from "react-bootstrap/esm/Button";
 export default function Login() {
   const navigate = useNavigate();
   const username = useRef("");
@@ -57,7 +57,7 @@ export default function Login() {
       <div className='header-container'>
         <img src={logo} alt='logo' />
       </div>
-      <div className='container inputs mt-4 pt-2 pb-4'>
+      <div className='inputs mt-4 pt-2 pb-4'>
         <div className="form">
         <div className='input'>
           <img className='icons' src={user} alt='' />
@@ -68,7 +68,7 @@ export default function Login() {
           <input type='password' placeholder='Password' ref={password} />
         </div>
         <div className='submit-container'>
-          <div className='btn' onClick={()=>login()}>Log in</div>
+          <Button className='btn' onClick={()=>login()}>Log in</Button>
           <div className='forgot-password'>
             <a href="Signup">Don't have an account yet?</a>
           </div>
