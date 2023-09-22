@@ -1,7 +1,5 @@
 const Config = {
-    backEndUrl: "http://localhost:8080/",
-    local: "http://localhost:3000/"
- 
+    backEndUrl: "https://pg3ackaqdv.us-east-1.awsapprunner.com/"
  };
  
  export default Config;
