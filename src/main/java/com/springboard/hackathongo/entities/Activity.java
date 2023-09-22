@@ -10,7 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Activity {
-    private int id;
+    private int activityId;
     private String activityFeed;
     private Date date;
     private int sqnId;

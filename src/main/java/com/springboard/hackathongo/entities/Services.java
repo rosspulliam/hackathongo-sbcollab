@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Services {
-    private int serviceType;
+    private int serviceId;
     private String url;
     private String enrolledAccounts;//long string on account pk's
     private String description;

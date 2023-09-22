@@ -10,7 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Users {
-    private int sqnId;
+    private int id;
     private String role;
     private String enrollment;
     private String acceptance;

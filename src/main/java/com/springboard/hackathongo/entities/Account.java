@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Account {
-    private int id;
+    private int accountId;
     private int cabinNumber;
     private Long phone;
     private String services;

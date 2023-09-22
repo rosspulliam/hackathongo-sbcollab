@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Comments {
 
-    private int id;
+    private int commentsId;
     private int serviceId;
     private int userId;
     private int destinationId;

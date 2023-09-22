@@ -1,13 +1,12 @@
 package com.springboard.hackathongo.controllers;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
+import com.springboard.hackathongo.entities.Account;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
-import software.amazon.awssdk.services.dynamodb.model.ListTablesRequest;
-import software.amazon.awssdk.services.dynamodb.model.ListTablesResponse;
+import software.amazon.awssdk.services.dynamodb.model.*;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.ListObjectsRequest;
 import software.amazon.awssdk.services.s3.model.ListObjectsResponse;
@@ -30,16 +29,16 @@ public class HelloWorld {
             //  .credentialsProvider(credentialsProvider)
             .build();
 
-    String tableName = "Music";
-    String partitionAlias = "#a";
-    String partitionKeyName = "Artist";
-    String partitionKeyVal = "AWS Band";
+
 
 
     DynamoDbClient ddb = DynamoDbClient.builder()
             // .credentialsProvider(credentialsProvider)
             .region(region)
             .build();
+
+
+
 
 
     @GetMapping("/")
@@ -66,35 +65,37 @@ public class HelloWorld {
     }
 
     @GetMapping("/ddb")
-    public List<String> GetItem() {
+    public List<Map<String, AttributeValue>> GetItem() {
+        String tableName = "account";
+        String partitionAlias = "#a";
+        String partitionKeyName = "account_id";
+        String partitionKeyVal = "1";
 
+    	  // Set up an alias for the partition key name in case it's a reserved word.
+        HashMap<String,String> attrNameAlias = new HashMap<String,String>();
+        attrNameAlias.put(partitionAlias, partitionKeyName);
 
-//    	  // Set up an alias for the partition key name in case it's a reserved word.
-//        HashMap<String,String> attrNameAlias = new HashMap<String,String>();
-//        attrNameAlias.put(partitionAlias, partitionKeyName);
-//
-//        // Set up mapping of the partition name with the value.
-//        HashMap<String, AttributeValue> attrValues = new HashMap<>();
-//
-//        attrValues.put(":"+partitionKeyName, AttributeValue.builder()
-//            .s(partitionKeyVal)
-//            .build());
-//
-//        QueryRequest queryReq = QueryRequest.builder()
-//            .tableName(tableName)
-//            .keyConditionExpression(partitionAlias + " = :" + partitionKeyName)
-//            .expressionAttributeNames(attrNameAlias)
-//            .expressionAttributeValues(attrValues)
-//            .build();
-//
-//            QueryResponse response = ddb.query(queryReq);
-//            System.out.println(response.count());
+        // Set up mapping of the partition name with the value.
+        HashMap<String, AttributeValue> attrValues = new HashMap<>();
+
+        attrValues.put(":"+partitionKeyName, AttributeValue.builder()
+            .s(partitionKeyVal)
+            .build());
+
+        QueryRequest queryReq = QueryRequest.builder()
+            .tableName(tableName)
+            .keyConditionExpression(partitionAlias + " = :" + partitionKeyName)
+            .expressionAttributeNames(attrNameAlias)
+            .expressionAttributeValues(attrValues)
+            .build();
+
+            QueryResponse resp = ddb.query(queryReq);
+            System.out.println(resp.count());
         ListTablesResponse response = null;
         ListTablesRequest request = ListTablesRequest.builder().build();
         response = ddb.listTables(request);
 
 
-        return response.tableNames();
-//    	return "Hello Dynamo";
+        return resp.items();
     }
 }
