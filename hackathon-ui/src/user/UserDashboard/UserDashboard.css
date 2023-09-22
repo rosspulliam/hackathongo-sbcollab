@@ -23,6 +23,17 @@
   .user-main-bottom{
     flex:1;
     height: 50vh;
-    margin-top: 50vh;
+    margin-top: 10vh;
+  }
+
+  .user-main-top-wrapper{
+    display: flex;
+    flex-direction: column;
   }
   
+  .user-main-left{
+    flex:1;
+  }
+  .user-main-right{
+    flex:1;
+  }

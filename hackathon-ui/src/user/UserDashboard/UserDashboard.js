@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Container, Nav, Row, Col, Card, Button, Form } from "react-bootstrap";
+import { Container, Nav, Row, Col, Card, Button, Form, ListGroup } from "react-bootstrap";
 import "../UserDashboard/UserDashboard.css";
 
 export default function UserDashboard() {
@@ -30,12 +30,13 @@ export default function UserDashboard() {
           <Col sm={10} className="user-main">
             <div className="user-main-wrapper">
               <div className="user-main-top">
+                <div className="user-main-top-wrapper">
                 <Row>
-                  <Col sm={5} className="user-main-header">
+                  <Col sm={5} className="user-main-left">
                     <div className="personal-info">
                       <Card>
+                          <Card.Header>Personal Information</Card.Header>
                         <Card.Body>
-                          <Card.Title>Personal Information</Card.Title>
                           {editMode ? (
                             <Form>
                               <Form.Group
@@ -92,13 +93,30 @@ export default function UserDashboard() {
                       </Card>
                     </div>
                   </Col>
-                  <Col sm={5} className="user-main-content">
-                    <h1>Home</h1>
+                  <Col sm={5} className="user-main-right">
+                  <Card>
+        <Card.Header>Activity Feed</Card.Header>
+      <Card.Body>
+        <Card.Title>title</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">
+          time
+        </Card.Subtitle>
+        <Card.Text>description</Card.Text>
+      </Card.Body>
+    </Card>
                   </Col>
                 </Row>
+                </div>
               </div>
               <div className="user-main-bottom">
-                <h1>Home</h1>
+              <Card>
+      <Card.Header>Services</Card.Header>
+      <Card.Body>
+        <ListGroup variant="flush">
+            <ListGroup.Item >Medical</ListGroup.Item>
+        </ListGroup>
+      </Card.Body>
+    </Card>
               </div>
             </div>
           </Col>
