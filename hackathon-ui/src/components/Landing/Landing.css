@@ -1,0 +1,56 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .landing {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .landing-left {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .landing-logo img {
+    margin-bottom: 15vh; 
+    position: absolute;
+    top:0px;
+    left: 0px;
+  }
+
+  .landing-text {
+    margin-top: 40vh;
+    text-align: center;
+  }
+  
+  .landing-text h2 {
+    font-size: 24px;
+  }
+  
+  .landing-buttons {
+    margin-top: 5vh;
+ text-align: center;
+  }
+
+  .landing-buttons button{
+    margin:0.5vw;
+  }
+  
+  .landing-right .landing-image {
+    max-width: 100%; 
+    height: 100%;
+  }
+  
+
+  @media (max-width: 768px) {
+    .landing {
+      flex-direction: column;
+    }
+    .landing-logo img {
+      height: 100px;
+    }
+  }
