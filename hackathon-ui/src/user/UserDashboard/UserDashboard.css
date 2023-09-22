@@ -1,0 +1,28 @@
+.user-dashboard{
+    height: 100vh;
+    display: flex;
+}
+.user-nav{
+    height: 100vh;
+    background-color: #1876C0;
+}
+
+.user-nav .nav-link {
+    color:black;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  .user-main-wrapper{
+   display: flex;
+   flex-direction: column;
+  }
+  .user-main-top{
+    flex:1;
+    height: 50vh;
+  }
+  .user-main-bottom{
+    flex:1;
+    height: 50vh;
+    margin-top: 50vh;
+  }
+  
